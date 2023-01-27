@@ -35,9 +35,10 @@ namespace strict_fstream
 		}
 #else
 		// GNU-specific strerror_r()
-		auto p = strerror_r(errno, &buff[0], buff.size());
-		std::string tmp(p, std::strlen(p));
-		std::swap(buff, tmp);
+		//auto p = strerror_r(errno, &buff[0], buff.size());
+		//std::string tmp(p, std::strlen(p));
+		//std::swap(buff, tmp);
+		buff = "Unknown error";
 #endif
 		buff.resize(buff.find('\0'));
 		return buff;

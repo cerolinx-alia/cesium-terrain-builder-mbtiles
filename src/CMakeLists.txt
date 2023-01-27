@@ -17,6 +17,13 @@ if(NOT ZLIB_FOUND)
 endif()
 include_directories(${ZLIB_INCLUDE_DIRS})
 
+# We need sqlite
+find_package(SQLite3)
+if(NOT SQLITE3_FOUND)
+  message(FATAL_ERROR "The sqlite library cannot be found on the system")
+endif()
+include_directories(${SQLITE3_INCLUDE_DIRS})
+
 add_library(ctb SHARED
   GDALTile.cpp
   GDALTiler.cpp
@@ -26,7 +33,7 @@ add_library(ctb SHARED
   MeshTile.cpp
   GlobalMercator.cpp
   GlobalGeodetic.cpp)
-target_link_libraries(ctb ${GDAL_LIBRARIES} ${ZLIB_LIBRARIES})
+target_link_libraries(ctb LINK_PUBLIC sqlite3 ${GDAL_LIBRARIES} ${ZLIB_LIBRARIES})
 
 # Install libctb
 set(HEADERS

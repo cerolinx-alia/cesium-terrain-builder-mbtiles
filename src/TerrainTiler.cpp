@@ -24,6 +24,8 @@
 
 #include <iostream>
 
+#define DBL_EPSILON 2.2204460492503131e-16
+
 using namespace ctb;
 
 TerrainTile *

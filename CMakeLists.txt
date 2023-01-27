@@ -61,6 +61,7 @@ endif()
 
 FIND_PACKAGE (Threads)
 
+
 # We need GDAL
 find_package(GDAL)
 if(NOT GDAL_FOUND)
